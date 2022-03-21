@@ -101,4 +101,15 @@ class ProductController extends Controller
         $product->delete();
         return redirect(route('admin.product.index'));
     }
+
+    public function indexMain()
+    {
+        $products = Product::simplePaginate(25);
+        return view('users.product.main', compact('products'));
+    }
+
+    public function firstProduct(Product $product)
+    {
+        return view('users.product.first', compact('product'));
+    }
 }

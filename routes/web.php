@@ -6,15 +6,15 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ProductController::class, 'indexMain'])->name('welcome');
 
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/login', [UserController::class, 'loginPost']);
 
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::post('/register', [UserController::class, 'registerPost']);
+
+Route::get('/product/{product}', [ProductController::class, 'firstProduct'])->name('product');
 
 Route::middleware('auth')->group(function (){
 
@@ -27,7 +27,10 @@ Route::middleware('auth')->group(function (){
         });
 
         Route::group(['prefix' => '/order', 'as' => 'order.'], function (){
-           Route::get('/basket', [OrderController::class, 'basket'])->name('basket') ;
+            Route::get('/basket', [OrderController::class, 'basket'])->name('basket');
+            Route::post('/basket', [OrderController::class, 'basketPost']);
+            Route::get('/addBasket', [OrderController::class, 'addBasket'])->name('addBasket');
+            Route::post('/createOrder', [OrderController::class, 'createOrder'])->name('createOrder');
         });
     });
 
