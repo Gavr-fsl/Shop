@@ -15,6 +15,7 @@
                     <li class="list-group-item">Почта: {{ Auth::user()->email }}</li>
                     <li class="list-group-item">Логин: {{ Auth::user()->login }}</li>
                     <li class="list-group-item">Адрес: {{ Auth::user()->address }}</li>
+                    <li class="list-group-item">Адрес: {{ Auth::user()->address }}</li>
                 </ul>
                 <a href="{{ route('cabinetEdit') }}" class="btn btn-outline-primary mt-4">Редактировать аккаунт</a>
             </div>
